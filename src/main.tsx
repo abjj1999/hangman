@@ -1,10 +1,26 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
+import Game from './Game';
+import './style.css';
 
+const App: React.FC = () => {
+  const [darkMode, setDarkMode] = useState(false);
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    if (!darkMode) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+  };
+
+  return (
+    <div>
+      <button onClick={toggleDarkMode}>Toggle Dark Mode</button>
+      <Game />
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById('root'));
